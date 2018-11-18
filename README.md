@@ -3,6 +3,7 @@
 
 
 フロントサイドはJSP、サーバーサイドはJava(Spring)を利用しています。
+サーバーにはWEBサーバーをApache、APサーバーにTomcat、DBサーバーにMySQLを使用しています。
 O/RマッパーとしてはHibernateを利用してマッピングしています。
 Security対策としては基本的にはSpring securityをカスタマイズしてユーザー認証を行なっています。
 その他便利ツール系のlombok等のライブラリ等々も利用してます。
