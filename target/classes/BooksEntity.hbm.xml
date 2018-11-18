@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/11/17 12:27:48 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="jp.co.mylibrary.entity.BooksEntity" table="BOOKS" lazy="false">
+		<composite-id>
+			<key-property name="bookId" type="int">
+				<column name="BOOK_ID" />
+			</key-property>
+			<key-property name="bookName" type="java.lang.String">
+				<column name="BOOK_NAME" />
+			</key-property>
+			<key-property name="author" type="java.lang.String">
+				<column name="AUTHOR" />
+			</key-property>
+			<key-property name="totalPage" type="int">
+				<column name="TOTAL_PAGE" />
+			</key-property>
+		</composite-id>
+		<property name="img" type="java.lang.String">
+			<column name="IMG" />
+		</property>
+	</class>
+</hibernate-mapping>

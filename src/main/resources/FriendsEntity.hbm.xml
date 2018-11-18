@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/11/17 12:27:48 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="jp.co.mylibrary.entity.FriendsEntity"
+		table="FRIENDS" lazy="false">
+		<composite-id>
+			<key-property name="userId" type="int">
+				<column name="USER_ID" />
+			</key-property>
+			<key-property name="friendId" type="int">
+				<column name="FRIEND_ID" />
+			</key-property>
+		</composite-id>
+	</class>
+</hibernate-mapping>
