@@ -21,6 +21,7 @@ public class ReadBooksDaoImpl extends DaoSupport {
 		getCurrentSession().update(readBooksEntity);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ReadBooksEntity> getReadBook(ReadBooksEntity readBooksEntity) {
 		Criteria criteria = getCurrentSession().createCriteria(ReadBooksEntity.class)
 				.add(Restrictions.eq("bookId", readBooksEntity.getBookId()))
@@ -29,8 +30,8 @@ public class ReadBooksDaoImpl extends DaoSupport {
 		return readBooksList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<BooksAndReadBooksDto> getReadBookByUserId(int userId) {
-		@SuppressWarnings("unchecked")
 		List<BooksAndReadBooksDto> resultList = (List<BooksAndReadBooksDto>) getSession()
 				.createSQLQuery(
 						"SELECT b.book_id,b.book_name,b.author,b.total_page,b.img,r.user_id,r.read_page,r.end_flg FROM BOOKS b, READ_BOOKS r WHERE b.book_id = r.book_id AND user_id = :userId")

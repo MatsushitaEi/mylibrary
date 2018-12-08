@@ -1,18 +1,20 @@
 package jp.co.mylibrary.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.Data;
 
 /**
  * 
  * @author matsushitaei BOOKSテーブルとREAD_BOOKSテーブルの２つを結合した結果を保持するテーブル
  *
  */
-
-@Getter
-@Setter
+@Entity
+@Data
 public class BooksAndReadBooksDto {
 
+	@Id
 	private int bookId;
 
 	private String bookName;
@@ -28,5 +30,7 @@ public class BooksAndReadBooksDto {
 	private int readPage;
 
 	private int endFlg;
+
+	private int nowReadPage;
 
 }

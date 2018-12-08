@@ -1,3 +1,4 @@
+<%@page import="jp.co.mylibrary.dto.BooksAndReadBooksDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -57,20 +58,16 @@
 								<span>あなたの読んだページ数：</span>
 								<c:out value="${item[6]}" />
 							</div>
-							<form:form class="contact-form" role="form" action="updateBook" name="form"
-								method="POST">
-								<input type="hidden" name="bookId" value="${item[0]}" />
-								<input type="hidden" name="bookName" value="${item[1]}" />
-								<input type="hidden" name="author" value="${item[2]}" />
-								<input type="hidden" name="totalPage" value="${item[3]}" />
-								<input type="hidden" name="img" value="${item[4]}" />
-								<input type="hidden" name="userId" value="${item[5]}" />
-								<input type="hidden" name="readPage" value="${item[6]}" />
-								<div class="edit">
-									<a id="edit" href="javascript:form.submit()"> <span
-										class="glyphicon glyphicon-pencil" aria-hidden="true"
-										style="font-size: 30px;"></span>
-									</a>
+							<form:form modelAttribute="booksAndReadBooksDto" class="contact-form" role="form" action="updateBook" method="POST">
+								<form:input path="bookId" type="hidden" name="bookId" value="${item[0]}" />
+								<form:input path="bookName" type="hidden" name="bookName" value="${item[1]}" />
+								<form:input path="author" type="hidden" name="author" value="${item[2]}" />
+								<form:input path="totalPage" type="hidden" name="totalPage" value="${item[3]}" />
+								<form:input path="img" type="hidden" name="img" value="${item[4]}" />
+								<form:input path="userId" type="hidden" name="userId" value="${item[5]}" />
+								<form:input path="readPage" type="hidden" name="readPage" value="${item[6]}" />
+								<div class="form-send">
+									<button type="submit" class="btn btn-large">登録</button>
 								</div>
 							</form:form>
 						</div>

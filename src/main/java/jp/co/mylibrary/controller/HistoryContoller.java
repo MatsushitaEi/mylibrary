@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +19,8 @@ import jp.co.mylibrary.entity.UsersEntity;
 public class HistoryContoller {
 
 	@RequestMapping(value = { "/history" }, method = RequestMethod.GET)
-	public String doget(Locale locale, Model model, Principal principal) {
+	public String doget(Locale locale, Model model, @ModelAttribute BooksAndReadBooksDto booksAndReadBooksDto,
+			Principal principal) {
 
 		Authentication authentication = (Authentication) principal;
 		UsersEntity user = (UsersEntity) authentication.getPrincipal();

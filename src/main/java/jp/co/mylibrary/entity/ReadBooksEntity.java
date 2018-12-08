@@ -21,6 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ReadBooksEntity extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int bookId;

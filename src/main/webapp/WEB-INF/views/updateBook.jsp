@@ -27,23 +27,28 @@
     </div>
     <div class="row mt">
       <div class="col-lg-8 col-lg-offset-2">
-        <form:form modelAttribute="booksAndReadBooksDto" class="contact-form php-mail-form" role="form" action="history" method="POST">
+        <form:form modelAttribute="booksAndReadBooksDto" class="contact-form php-mail-form" role="form" action="editBook" method="POST">
         
         	<div class="form-group">
         	<label>書籍名：</label>
-              <form:input path="bookName" required="required" type="name" name="bookName" class="form-control" placeholder="書籍名" data-rule="name" data-msg="4文字以上で入力して下さい"/>
-              <div class="validate"></div>
+              <form:input path="bookName" type="name" name="bookName" class="form-control" placeholder="書籍名" data-rule="name" readonly="true"/>
             </div>
             
             <div class="form-group">
         	<label>作者名：</label>
-              <form:input path="author" required="required" type="name" name="editor" class="form-control" placeholder="作者名" data-rule="name" data-msg="4文字以上で入力して下さい"/>
+              <form:input path="author" required="required" type="name" name="editor" class="form-control" placeholder="作者名" data-rule="name" data-msg="4文字以上で入力して下さい" readonly="true"/>
+              <div class="validate"></div>
+            </div>
+
+            <div class="form-group">
+            <label>ページ数：</label>
+              <form:input path="totalPage" required="required" type="number" name="totalPage" class="form-control" placeholder="ページ数" data-rule="number" data-msg="数値を入力して下さい" readonly="true"/>
               <div class="validate"></div>
             </div>
 
             <div class="form-group">
             <label>現在のページ数：</label>
-              <form:input path="totalPage" required="required" type="number" name="totalPage" class="form-control" placeholder="ページ数" data-rule="number" data-msg="数値を入力して下さい"/>
+              <form:input path="nowReadPage" required="required" type="number" name="nowReadPage" class="form-control" placeholder="読んだページ数" data-rule="number" data-msg="数値を入力して下さい"/>
               <div class="validate"></div>
             </div>
             
@@ -52,9 +57,13 @@
               <form:input path="img" type="file" name="file" class="form-control" placeholder="画像url" data-rule="file" data-msg="画像を指定して下さい"/>
               <div class="validate"></div>
             </div>
-
+            
+            <form:input path="readPage" required="required" type="hidden" name="readPage" class="form-control" data-rule="number"/>
+            
             <div class="form-send">
-              <button type="submit" class="btn btn-large">登録</button>
+               <form:input path="userId" type="hidden" name="userId" />
+               <form:input path="bookId" type="hidden" name="bookId" />
+               <button type="submit" class="btn btn-large">登録</button>
             </div>
 
           </form:form>

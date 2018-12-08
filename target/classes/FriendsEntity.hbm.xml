@@ -13,5 +13,17 @@
 				<column name="FRIEND_ID" />
 			</key-property>
 		</composite-id>
+		<property name="createDate" type="java.util.Date">
+			<column name="CREATE_DATE" />
+		</property>
+		<property name="createUser" type="java.lang.String">
+			<column name="CREATE_USER" />
+		</property>
+		<property name="prcDate" type="java.util.Date">
+			<column name="PRC_DATE" />
+		</property>
+		<property name="prcUser" type="java.lang.String">
+			<column name="PRC_USER" />
+		</property>
 	</class>
 </hibernate-mapping>

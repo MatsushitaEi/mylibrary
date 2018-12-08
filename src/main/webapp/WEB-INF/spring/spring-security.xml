@@ -19,10 +19,11 @@
     
     <sec:custom-filter position="FORM_LOGIN_FILTER" ref="applicationUsernamePasswordAuthenticationFilter" />
     
-    <sec:logout logout-url="/logout" logout-success-url="/login?from=logout" invalidate-session="true" />
-    
-    <sec:csrf/>
-  </sec:http>
+       <sec:logout 
+        logout-url="/logout"
+        logout-success-url="/index"
+        invalidate-session="true" />
+       </sec:http>
 
   <bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
     <constructor-arg value="/login" />

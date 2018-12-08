@@ -6,15 +6,30 @@
 	<class name="jp.co.mylibrary.entity.ReadPageEntity" table="READ_PAGE"
 		lazy="false">
 		<composite-id>
-			<key-property name="bookId" type="int">
-				<column name="BOOK_ID" />
-			</key-property>
-			<key-property name="userId" type="int">
-				<column name="USER_ID" />
+			<key-property name="Id" type="int">
+				<column name="ID" />
 			</key-property>
 		</composite-id>
+		<property name="bookId" type="int">
+			<column name="BOOK_ID" />
+		</property>
+		<property name="userId" type="int">
+			<column name="USER_ID" />
+		</property>
 		<property name="readPage" type="int">
 			<column name="READ_PAGE" />
+		</property>
+		<property name="createDate" type="java.util.Date">
+			<column name="CREATE_DATE" />
+		</property>
+		<property name="createUser" type="java.lang.String">
+			<column name="CREATE_USER" />
+		</property>
+		<property name="prcDate" type="java.util.Date">
+			<column name="PRC_DATE" />
+		</property>
+		<property name="prcUser" type="java.lang.String">
+			<column name="PRC_USER" />
 		</property>
 	</class>
 </hibernate-mapping>

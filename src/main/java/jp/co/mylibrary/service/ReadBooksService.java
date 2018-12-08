@@ -34,7 +34,7 @@ public class ReadBooksService {
 		ReadBooksDaoImpl readBooksDaoImpl = new ReadBooksDaoImpl();
 		readBooksDaoImpl.openCurrentSessionwithTransaction();
 		readBooksEntity.preUpdate();
-		readBooksDaoImpl.setReadBooks(readBooksEntity);
+		readBooksDaoImpl.updateReadBooks(readBooksEntity);
 		readBooksDaoImpl.closeCurrentSessionwithTransaction();
 		return true;
 	}

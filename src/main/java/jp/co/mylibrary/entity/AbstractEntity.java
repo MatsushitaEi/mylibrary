@@ -9,12 +9,15 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+
 /**
  * 
  * @author matsushitaei 作成日や更新日等を自動設定する親クラス
  */
 
 @MappedSuperclass
+@Data
 public class AbstractEntity implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)

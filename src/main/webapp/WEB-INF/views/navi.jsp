@@ -20,11 +20,17 @@
 					<li><a href="login">ログイン</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-					<li><a href="logout">ログアウト</a></li>
+				<li><a href="index">マイページ</a>
+				<li><a id="submit" href="" v-on:click="submit">ログアウト</a></li>
 				</sec:authorize>
 				<li><a href="contact">Contact</a></li>
+				<form id="logout" class="form-inline" action="logout" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</form>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
 </div>
+  <!-- vue.js File -->
+  <script type="text/javascript" src="/mylibrary/resources/js/submit.js"></script>

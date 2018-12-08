@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
+
 <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -17,6 +18,7 @@
   <link href="/mylibrary/resources/css/style.css" rel="stylesheet">
   
   <!-- JavaScript Libraries -->
+  <script type="text/javascript" src="/mylibrary/resources/js/vue.js"></script>
   <script src="/mylibrary/resources/jquery/jquery.min.js"></script>
   <script src="/mylibrary/resources/bootstrap/js/bootstrap.min.js"></script>
 

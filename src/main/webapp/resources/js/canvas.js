@@ -1,26 +1,40 @@
 /**
  * canvas描画用js
  */
-var labels = [];
+
+var labels = new createLabel();
 
 function createLabel() {
+	this.label = new Array();
+	this.term = new Array();
+
 	var date = new Date();
 	var day = date.getDay();
-	
+
 	// 直近の土曜日の日付を計算
 	day = day + (6 - day);
 	date.setDate(date.getDate() + day);
-	
-	//配列に格納
-	for(var i=0; i < 5; i++){
-		var endDate = date.getMonth()+1 + "/" + date.getDate() ;
+	date.setHours(0, 0, 0, 0);
+
+	// 配列に格納
+	for (var i = 0; i < 5; i++) {
+		var endDate = date.getMonth() + 1 + "/" + date.getDate();
+		var rowEndDate = new Date(date);
+
 		date.setDate(date.getDate() - 6);
-		var startDate = date.getMonth()+1 + "/" + date.getDate();
-		labels.unshift(startDate + "-" + endDate);
+		var startDate = date.getMonth() + 1 + "/" + date.getDate();
+		var rowStartDate = new Date(date);
+
+		this.label.unshift(startDate + "-" + endDate);
+		this.term.unshift({
+			"start" : rowStartDate,
+			"end" : rowEndDate
+		})
+		this.startDate = date;
 		date.setDate(date.getDate() - 1);
 	}
-	return labels;
-
+	// データの作成
+	getReadPage(this);
 }
 
 window.onload = function() {
@@ -34,16 +48,13 @@ window.onload = function() {
 
 // ここにデータを格納
 var barChartData = {
-	labels : createLabel(),
+	// ラベルの作成
+	labels : labels.label,
 	datasets : [
 			{
 				type : 'line',
 				label : '読んだページ数',
-				data : [ '0.155', '0.118', '0.121', '0.068', '0.083', '0.060',
-						'0.067', '0.121', '0.121', '0.150', '0.118', '0.097',
-						'0.078', '0.127', '0.155', '0.140', '0.101', '0.140',
-						'0.041', '0.093', '0.189', '0.146', '0.134', '0.127',
-						'0.116', '0.111', '0.125', '0.116' ],
+				data : labels.data,
 				borderColor : "rgba(254,97,132,0.8)",
 				pointBackgroundColor : "rgba(254,97,132,0.8)",
 				fill : false,
@@ -90,3 +101,54 @@ var complexChartOption = {
 		} ],
 	}
 };
+
+// 読んだページ数を取得する
+function getReadPage(labels) {
+
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(header, token);
+	});
+
+	// リクエストJSON
+	var request = {
+		"date" : labels.startDate
+	};
+
+	// ajaxでservletにリクエストを送信
+	$
+			.ajax({
+				type : "POST",
+				url : "/mylibrary/readPage",
+				data : {
+					data : JSON.stringify(request)
+				},
+				async : false,
+				dataType : 'json',
+				success : function(data) {
+					var resultArray = [];
+					for (var i = 0; i < data.length; i++) {
+						readDate = new Date(data[i].createDate);
+						readPage = data[i].readPage;
+						// 日付別にページ数を格納
+						for (var j = 0; j < labels.term.length; j++) {
+							if (!(resultArray[j]))
+								resultArray[j] = 0;
+							var start = new Date(labels.term[j].start);
+							var end = new Date(labels.term[j].end);
+							if (start <= readDate && end > readDate) {
+								resultArray[j] = resultArray[j] + readPage;
+								continue;
+							}
+						}
+						labels.data = resultArray;
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("リクエスト時になんらかのエラーが発生しました：" + textStatus + ":\n"
+							+ errorThrown);
+				}
+			});
+
+}
